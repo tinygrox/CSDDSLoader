@@ -126,9 +126,7 @@ public static class DDSLoader
         else if (rgb && (rgb888 || bgr888))
         {
             // RGB or RGBA format
-            textureFormat = alphapixel
-                ? TextureFormat.RGBA32
-                : TextureFormat.RGB24;
+            textureFormat = alphapixel ? TextureFormat.RGBA32 : TextureFormat.RGB24;
         }
         else if (rgb && rgb565)
         {
@@ -195,10 +193,10 @@ public static class DDSLoader
 
         // If the bug conditions are present then switch to full quality
         if (isCompressed && quality > 0 && (dwWidth >> quality) % 4 != 0 && (dwHeight >> quality) % 4 != 0)
-            //QualitySettings.masterTextureLimit = 0;
             QualitySettings.globalTextureMipmapLimit = 0;
 
-        Texture2D texture = new(dwWidth, dwHeight, textureFormat, dwMipMapCount > 1);
+
+        Texture2D texture = new(Mathf.Max(4, dwWidth + (4 - dwWidth % 4) % 4), Mathf.Max(4, dwHeight + (4 - dwHeight % 4) % 4), textureFormat, dwMipMapCount > 1);
         texture.LoadRawTextureData(dxtBytes);
         return texture;
     }

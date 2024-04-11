@@ -28,7 +28,7 @@ public static class DDS_Utility
             if (texture2D == null && File.Exists(imagePath))
             {
                 byte[] data = File.ReadAllBytes(imagePath);
-                texture2D = new Texture2D(2, 2, TextureFormat.Alpha8, true); // minimap can be a setting for users
+                texture2D = new Texture2D(2, 2, TextureFormat.Alpha8, true); // miniMap can be a setting for users
                 texture2D.LoadImage(data);
             }
 
@@ -42,7 +42,7 @@ public static class DDS_Utility
             texture2D.filterMode = FilterMode.Trilinear; // Filter Mode can be a setting for users
             texture2D.anisoLevel = 9; // anisolevel can be a setting for users
             texture2D.mipMapBias = -0.5f; // can be a setting for users
-            texture2D.Apply();
+            texture2D.Apply(true);
         }
         catch (Exception ex)
         {
