@@ -52,12 +52,20 @@ public class Patch_TryLoadImagesForEnabledMods
 
                 if (File.Exists(ddsFile) && File.Exists(pngFile))
                 {
-                    list.Add(ddsFile);
+                    if (!list.Contains(ddsFile))
+                        list.Add(ddsFile);
                 }
                 else if (extensions.Any(ext => file.EndsWith(ext)))
-                    list.Add(file);
+                {
+                    if (!list.Contains(file))
+                        list.Add(file);
+                }
             }
         }
+        //foreach (var item in list)
+        //{
+        //    NoonUtility.Log(item);
+        //}
         return list;
     }
 
