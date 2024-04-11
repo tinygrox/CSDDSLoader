@@ -42,7 +42,6 @@ public static class DDS_Utility
             texture2D.filterMode = FilterMode.Trilinear; // Filter Mode can be a setting for users
             texture2D.anisoLevel = 9; // anisolevel can be a setting for users
             texture2D.mipMapBias = -0.5f; // can be a setting for users
-            //texture2D.Apply(true, !readable);
             texture2D.Apply();
         }
         catch (Exception ex)

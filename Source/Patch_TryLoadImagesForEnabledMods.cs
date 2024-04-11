@@ -25,10 +25,6 @@ public class Patch_TryLoadImagesForEnabledMods
         {
             if (mod.HasValidImageFolder())
             {
-                //if (Directory.Exists(mod.ImageFolder))
-                //{
-                //    imagesFilesList.AddRange(Directory.GetFiles(mod.ImageFolder).Where(f => f.EndsWith(".png") || f.EndsWith(".dds")).ToList());
-                //}
                 foreach (string text in GetFilesRecursive(mod.ImageFolder, imagesFilesList))
                 {
                     //NoonUtility.Log($"DDS get Files: {text}");
@@ -48,14 +44,12 @@ public class Patch_TryLoadImagesForEnabledMods
                 list.AddRange(GetFilesRecursive(subdirectory, extensions));
             }
 
-            // 检查每个文件夹中的文件
             foreach (string file in Directory.GetFiles(path))
             {
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
                 string ddsFile = Path.Combine(path, fileNameWithoutExtension + ".dds");
                 string pngFile = Path.Combine(path, fileNameWithoutExtension + ".png");
 
-                // Only dds if png and dds present 
                 if (File.Exists(ddsFile) && File.Exists(pngFile))
                 {
                     list.Add(ddsFile);
